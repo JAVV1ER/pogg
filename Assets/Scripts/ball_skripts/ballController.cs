@@ -9,32 +9,33 @@ using UnityEngine.SceneManagement;
 public class ballController : MonoBehaviour
 {
     public float speed = 10f;
-    private TMP_Text botScore;
-    private TMP_Text playerScore;
     public GameObject bot;
     public GameObject player;
     public int botCheck;
     public int playerCheck;
-    private Vector2 startSpeed;
-    private Rigidbody2D rbBall;
-    private SpriteRenderer ballSpriteRenderer;
-    private float[] choiceX = new float[6] { -50, 50, -40, 40, -60, 60 };
-    private float[] choiceY = new float[6] { -50, 50, -40, 40, -60, 60 };
-    private IEnumerator coroutine;
+    
+    private TMP_Text _botScore;
+    private TMP_Text _playerScore;
+    private Vector2 _startSpeed;
+    private Rigidbody2D _rbBall;
+    private SpriteRenderer _ballSpriteRenderer;
+    private IEnumerator _coroutine;
+    private float[] _choiceX = new float[6] { -50, 50, -40, 40, -60, 60 };
+    private float[] _choiceY = new float[6] { -50, 50, -40, 40, -60, 60 };
     //мяч идет без гравитации с маленькой массой
     //плюс подключен физический материал прыгучести с нулевым трением
     //ну тоесть я добился в редакторе такого состояния шара, чтобы можно было задать ему один раз толчок и он будет прыгать вечно
     void Start()
     {
 
-        rbBall = GetComponent<Rigidbody2D>();
-        botScore = bot.GetComponent<TMP_Text>();
-        playerScore = player.GetComponent<TMP_Text>();
-        ballSpriteRenderer= GetComponent<SpriteRenderer>();
+        _rbBall = GetComponent<Rigidbody2D>();
+        _botScore = bot.GetComponent<TMP_Text>();
+        _playerScore = player.GetComponent<TMP_Text>();
+        _ballSpriteRenderer= GetComponent<SpriteRenderer>();
         botCheck = 0;
         playerCheck = 0;
-        coroutine = Respawn();//главного меню не просили, поэтому чтобы сразу не проиграть запускаем корутину в которой мяч ожидает старта
-        StartCoroutine(coroutine);//ну да костыль
+        _coroutine = Respawn();//главного меню не просили, поэтому чтобы сразу не проиграть запускаем корутину в которой мяч ожидает старта
+        StartCoroutine(_coroutine);//ну да костыль
     }
     
 
@@ -50,37 +51,37 @@ public class ballController : MonoBehaviour
             
             botCheck += 1;
             //считаю внутри и записываю в текст
-            botScore.text = botCheck.ToString();
+            _botScore.text = botCheck.ToString();
             //так как было столкновение с границей(бота по идее) вызываем корутину которая вернет мяч в начало
             StartCoroutine(Respawn());
         }
         if (collision.gameObject.tag == "playerBorder")
         {
             playerCheck += 1;
-            playerScore.text = playerCheck.ToString();
+            _playerScore.text = playerCheck.ToString();
             StartCoroutine(Respawn());
         }
     }
     private IEnumerator Respawn()
     {
         //надо поменять цвет, чтоб было видно когда мяч полетит
-        ballSpriteRenderer.color = Color.red;
+        _ballSpriteRenderer.color = Color.red;
         //обнуляем мячу скорость и ставим его в нули
         //фейковый респавн
-        rbBall.velocity = Vector2.zero;
-        rbBall.position = Vector2.zero;
+        _rbBall.velocity = Vector2.zero;
+        _rbBall.position = Vector2.zero;
         
         yield return new WaitForSeconds(2f);
-        ballSpriteRenderer.color = Color.green;
+        _ballSpriteRenderer.color = Color.green;
         yield return new WaitForSeconds(1f);
-        ballSpriteRenderer.color = Color.white;
+        _ballSpriteRenderer.color = Color.white;
         
         Random rnd = new Random();
         //в случайном направлении (лево или право) швыряем мяч со скоростью которую можно в редакторе задать
         //можно было постоянно контролировать скорость, но так интересней
         //так мячик более физичный и его можно ускорить если ударить низом ракетки
-        startSpeed = new Vector2(choiceX[rnd.Next(0,6)], choiceY[rnd.Next(0,6)]) * speed;
-        rbBall.AddForce(startSpeed);
+        _startSpeed = new Vector2(_choiceX[rnd.Next(0,6)], _choiceY[rnd.Next(0,6)]) * speed;
+        _rbBall.AddForce(_startSpeed);
 
     }
     

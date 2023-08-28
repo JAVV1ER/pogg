@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class gameCoordinator : MonoBehaviour
 {
-    private TMP_Text botScore;
-    private TMP_Text playerScore;
     public GameObject bot;
     public GameObject player;
     public GameObject btnRetry;
     public GameObject btnExit;
-    private ballController togetherScoreCheck;
+    
+    private TMP_Text _botScore;
+    private TMP_Text _playerScore;
+    private ballController _togetherScoreCheck;
     
     void Start()
     {
@@ -23,14 +24,14 @@ public class gameCoordinator : MonoBehaviour
         //это нужно чтобы они вдруг при рестарте не появились
         btnExit.SetActive(false);
         btnRetry.SetActive(false);
-        togetherScoreCheck = GetComponent<ballController>();
+        _togetherScoreCheck = GetComponent<ballController>();
         
     }
 
     
     void Update()
     {
-        if((togetherScoreCheck.botCheck == 7) || (togetherScoreCheck.playerCheck == 7))
+        if((_togetherScoreCheck.botCheck == 7) || (_togetherScoreCheck.playerCheck == 7))
         {
             //мониторим пока като-то не забьет 7 очков
             //если кто-то забил то останавливаем время, чтобы игра не играла в саму себя
