@@ -13,12 +13,13 @@ public class ballController : MonoBehaviour
     private TMP_Text playerScore;
     public GameObject bot;
     public GameObject player;
-    private int botCheck;
-    private int playerCheck;
+    public int botCheck;
+    public int playerCheck;
     private Vector2 startSpeed;
     private Rigidbody2D rbBall;
-    
-    private float[] choice = new float[2] { -50, 50 };
+    private SpriteRenderer ballSpriteRenderer;
+    private float[] choiceX = new float[6] { -50, 50, -40, 40, -60, 60 };
+    private float[] choiceY = new float[6] { -50, 50, -40, 40, -60, 60 };
     private IEnumerator coroutine;
     //мяч идет без гравитации с маленькой массой
     //плюс подключен физический материал прыгучести с нулевым трением
@@ -29,6 +30,7 @@ public class ballController : MonoBehaviour
         rbBall = GetComponent<Rigidbody2D>();
         botScore = bot.GetComponent<TMP_Text>();
         playerScore = player.GetComponent<TMP_Text>();
+        ballSpriteRenderer= GetComponent<SpriteRenderer>();
         botCheck = 0;
         playerCheck = 0;
         coroutine = Respawn();//главного меню не просили, поэтому чтобы сразу не проиграть запускаем корутину в которой мяч ожидает старта
@@ -62,22 +64,22 @@ public class ballController : MonoBehaviour
     private IEnumerator Respawn()
     {
         //надо поменять цвет, чтоб было видно когда мяч полетит
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        ballSpriteRenderer.color = Color.red;
         //обнуляем мячу скорость и ставим его в нули
         //фейковый респавн
         rbBall.velocity = Vector2.zero;
         rbBall.position = Vector2.zero;
         
         yield return new WaitForSeconds(2f);
-        gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        ballSpriteRenderer.color = Color.green;
         yield return new WaitForSeconds(1f);
-        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        ballSpriteRenderer.color = Color.white;
         
         Random rnd = new Random();
         //в случайном направлении (лево или право) швыряем мяч со скоростью которую можно в редакторе задать
         //можно было постоянно контролировать скорость, но так интересней
         //так мячик более физичный и его можно ускорить если ударить низом ракетки
-        startSpeed = new Vector2(choice[rnd.Next(0,2)], 50) * speed;
+        startSpeed = new Vector2(choiceX[rnd.Next(0,6)], choiceY[rnd.Next(0,6)]) * speed;
         rbBall.AddForce(startSpeed);
 
     }

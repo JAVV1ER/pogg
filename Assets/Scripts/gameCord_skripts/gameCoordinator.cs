@@ -13,23 +13,24 @@ public class gameCoordinator : MonoBehaviour
     public GameObject player;
     public GameObject btnRetry;
     public GameObject btnExit;
+    private ballController botScoreCheck;
     
     void Start()
     {
-        botScore = bot.GetComponent<TMP_Text>();
-        playerScore = player.GetComponent<TMP_Text>();
         //при старте уровня возвращаем время назад
         Time.timeScale = 1;
         //кнопки рестарт и выход скрыты при старте уровня
         //это нужно чтобы они вдруг при рестарте не появились
         btnExit.SetActive(false);
         btnRetry.SetActive(false);
+        botScoreCheck = GetComponent<ballController>();
+        
     }
 
     
     void Update()
     {
-        if((botScore.text == "7") || (playerScore.text == "7"))
+        if((botScoreCheck.botCheck == 7) || (botScoreCheck.playerCheck == 7))
         {
             //мониторим пока като-то не забьет 7 очков
             //если кто-то забил то останавливаем время, чтобы игра не играла в саму себя
