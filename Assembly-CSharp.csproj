@@ -41,10 +41,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\gameCoordinator\gameCoordinator.cs" />
-     <Compile Include="Assets\bot\botController.cs" />
-     <Compile Include="Assets\Player\playerController.cs" />
-     <Compile Include="Assets\Ball\ballController.cs" />
+     <Compile Include="Assets\Scripts\gameCord_skripts\gameCoordinator.cs" />
+     <Compile Include="Assets\Scripts\bot_skripts\botController.cs" />
+     <Compile Include="Assets\Scripts\player_skripts\playerController.cs" />
+     <Compile Include="Assets\Scripts\ball_skripts\ballController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm-help.en.txt" />
@@ -64,11 +64,12 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\configurehelper.es.txt" />
      <None Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\package.json" />
      <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.24\Rider" />
-     <Folder Include="Assets\Ball" />
+     <Folder Include="Assets\Physics" />
      <Folder Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2" />
      <Folder Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Tests" />
      <None Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\package.json" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources" />
+     <Folder Include="Assets\Scripts\gameCord_skripts" />
      <Folder Include="Library\PackageCache\com.unity.2d.common@7.0.2\Tests" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\binmergetool.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Tests" />
@@ -107,6 +108,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\images.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.ja.txt" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\PackageConversionData.json" />
+     <Folder Include="Assets\Scripts\bot_skripts" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\basecommands.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6" />
      <Folder Include="Library\PackageCache\com.unity.2d.animation@8.0.4\IK" />
@@ -136,6 +138,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\i3.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm.zh-Hans.txt" />
      <Folder Include="Library\PackageCache\com.unity.2d.common@7.0.2\Path" />
+     <Folder Include="Assets\Scripts\ball_skripts" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\mergetool.ko.txt" />
      <None Include="Library\PackageCache\com.unity.services.core@1.5.2\package.json" />
@@ -165,7 +168,6 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\configurehelper.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.2d.psdimporter@7.0.3" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\FileSystemWatcherLicense.txt" />
-     <Folder Include="Assets\gameCoordinator" />
      <None Include="Library\PackageCache\com.unity.2d.tilemap.extras@3.0.2\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\i3.es.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
@@ -179,7 +181,6 @@
      <Folder Include="Assets\TextMesh Pro\Fonts" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\configurehelper.ko.txt" />
-     <Folder Include="Assets\bot" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm.es.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\guihelp.ja.txt" />
@@ -187,11 +188,11 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\mergetool.zh-Hans.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\xdiff.zh-Hant.txt" />
-     <Folder Include="Assets\Player" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\images.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\guihelp.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\clientcommon.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\images.es.txt" />
+     <Folder Include="Assets\Scripts" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF_SSD.cginc" />
      <Folder Include="Library\PackageCache\com.unity.2d.animation@8.0.4" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\ValidationConfig.json" />
@@ -211,6 +212,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\basecommands.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF Internal Editor.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <Folder Include="Assets\Scripts\player_skripts" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\binmergetool.ja.txt" />
      <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.5\ValidationExceptions.json" />
