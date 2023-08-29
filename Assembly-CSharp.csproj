@@ -41,10 +41,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\gameCord_skripts\gameCoordinator.cs" />
-     <Compile Include="Assets\Scripts\bot_skripts\botController.cs" />
-     <Compile Include="Assets\Scripts\player_skripts\playerController.cs" />
-     <Compile Include="Assets\Scripts\ball_skripts\ballController.cs" />
+     <Compile Include="Assets\Scripts\GameCoordinator.cs" />
+     <Compile Include="Assets\Scripts\BotController.cs" />
+     <Compile Include="Assets\Scripts\RacketCustomize.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\BallController.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm-help.en.txt" />
@@ -244,6 +245,7 @@
      <None Include="Library\PackageCache\com.unity.2d.animation@8.0.4\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\images.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.en.txt" />
+     <Folder Include="Assets\Materials" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\mergetool.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\guihelp.ko.txt" />

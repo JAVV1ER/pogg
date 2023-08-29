@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class botController : MonoBehaviour
+public class BotController : MonoBehaviour
 {
     public GameObject ball;//в редакторе нельзя сразу получить Rb(насколько мне известно) поэтому сначала я получаю GameObject и из него получаю Rb
     public float speed = 10f;

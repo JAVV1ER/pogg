@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float speed = 10f;
+    [SerializeField]
+    private float _speed = 10f;
     
     private Vector2 _moveAxis;
     private Rigidbody2D _rigidbody2D;
@@ -18,7 +20,7 @@ public class playerController : MonoBehaviour
     {
         //ввод с клавиатуры идет через оси, так делать правильно
         // можно настраивать в инпут менеджере клавиши
-        _moveAxis = new Vector2(0, Input.GetAxis("Horizontal"));
+        _moveAxis = new Vector2(0, Input.GetAxis("Vertical"));
         
     }
 
@@ -26,7 +28,7 @@ public class playerController : MonoBehaviour
     {
         //фиксед апдейт нужен чтобы просчитывать физику вне зависимости от частоты кадров
         //а так как ¤ делаю движение через физику а не через телепорты то фиксед апдейт уберет разрывы движений при потере кадров
-        _rigidbody2D.MovePosition(_rigidbody2D.position + (_moveAxis * speed * Time.fixedDeltaTime));//ну точнее разрывы уберет Time.fixedDeltaTime - эта переменна¤ хранит врем¤ между кадрами
+        _rigidbody2D.MovePosition(_rigidbody2D.position + (_moveAxis * (_speed * Time.fixedDeltaTime)));//ну точнее разрывы уберет Time.fixedDeltaTime - эта переменна¤ хранит врем¤ между кадрами
 
     }
 }

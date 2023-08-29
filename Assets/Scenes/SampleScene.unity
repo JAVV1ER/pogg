@@ -966,7 +966,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1507159543}
         m_TargetAssemblyTypeName: gameCoordinator, Assembly-CSharp
-        m_MethodName: ReastartLevel
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1121,9 +1121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c408604903745448ba85e69f70473f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.58
-  bot: {fileID: 140384542}
-  player: {fileID: 1471611293}
+  playerCheck: 0
+  botCheck: 0
+  _speed: 0.88
+  _bot: {fileID: 1471611293}
+  _player: {fileID: 140384542}
 --- !u!212 &737095304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1947,7 +1949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e177df089d92748a61c62dfd4ee714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 11
+  _speed: 11
 --- !u!70 &1489941479
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1993,10 +1995,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a6f40c67973644b89fa5806a913e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bot: {fileID: 140384542}
-  player: {fileID: 1471611293}
-  btnRetry: {fileID: 617871798}
-  btnExit: {fileID: 114366503}
+  _player: {fileID: 1489941472}
+  _btnRetry: {fileID: 617871798}
+  _btnExit: {fileID: 114366503}
+  _bot: {fileID: 507543818}
+  _ballObject: {fileID: 737095300}
 --- !u!4 &1507159544
 Transform:
   m_ObjectHideFlags: 0
