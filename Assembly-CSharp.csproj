@@ -46,6 +46,7 @@
      <Compile Include="Assets\Scripts\RacketCustomize.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\BallController.cs" />
+     <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm-help.en.txt" />
@@ -70,7 +71,6 @@
      <Folder Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Tests" />
      <None Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\package.json" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources" />
-     <Folder Include="Assets\Scripts\gameCord_skripts" />
      <Folder Include="Library\PackageCache\com.unity.2d.common@7.0.2\Tests" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\binmergetool.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Tests" />
@@ -80,6 +80,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\ValidationExceptions.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\plastic-gui.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.burst@1.7.4\Tests" />
+     <Folder Include="Assets\Prefabs" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\guihelp.es.txt" />
      <None Include="Library\PackageCache\com.unity.timeline@1.7.2\package.json" />
      <Folder Include="Assets\Scenes" />
@@ -109,7 +110,6 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\images.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.ja.txt" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\PackageConversionData.json" />
-     <Folder Include="Assets\Scripts\bot_skripts" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\basecommands.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.ext.nunit@1.0.6" />
      <Folder Include="Library\PackageCache\com.unity.2d.animation@8.0.4\IK" />
@@ -139,7 +139,6 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\i3.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm.zh-Hans.txt" />
      <Folder Include="Library\PackageCache\com.unity.2d.common@7.0.2\Path" />
-     <Folder Include="Assets\Scripts\ball_skripts" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\mergetool.ko.txt" />
      <None Include="Library\PackageCache\com.unity.services.core@1.5.2\package.json" />
@@ -213,7 +212,6 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\basecommands.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF Internal Editor.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-     <Folder Include="Assets\Scripts\player_skripts" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\binmergetool.ja.txt" />
      <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.5\ValidationExceptions.json" />

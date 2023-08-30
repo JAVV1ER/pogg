@@ -10,25 +10,34 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 _moveAxis;
     private Rigidbody2D _rigidbody2D;
+    private SpriteRenderer _spriteRenderer;
     void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>(); //ѕолучаем экземпл¤р физического тела при инициализации, потому что будем использовать движение при помощи физики
-        //движение через физику будет плавнее и не будет конфликтов с границами
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        
     }
     
     void Update()
     {
-        //ввод с клавиатуры идет через оси, так делать правильно
-        // можно настраивать в инпут менеджере клавиши
         _moveAxis = new Vector2(0, Input.GetAxis("Vertical"));
-        
     }
 
     void FixedUpdate()
     {
-        //фиксед апдейт нужен чтобы просчитывать физику вне зависимости от частоты кадров
-        //а так как ¤ делаю движение через физику а не через телепорты то фиксед апдейт уберет разрывы движений при потере кадров
-        _rigidbody2D.MovePosition(_rigidbody2D.position + (_moveAxis * (_speed * Time.fixedDeltaTime)));//ну точнее разрывы уберет Time.fixedDeltaTime - эта переменна¤ хранит врем¤ между кадрами
+        _rigidbody2D.MovePosition(_rigidbody2D.position + (_moveAxis * (_speed * Time.fixedDeltaTime)));
+        
+    }
 
+    public void SetColor(Color color)
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.color = color;
+    }
+
+    public void SetWidth(float width)
+    {
+        var tmp = gameObject.transform.localScale;
+        tmp.x = width;
+        gameObject.transform.localScale = tmp;
     }
 }
