@@ -9,9 +9,6 @@ using UnityEngine.Serialization;
 
 public class BallController : MonoBehaviour
 {
-    // TODO: Убрать Public когда появится ScoreManager
-    public int _playerScore;
-    public int _botScore;
     
     [SerializeField]
     private float _speed = 10f;
@@ -34,25 +31,14 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float _waitBallStandart = 1f;
     
-    
-    
-    private TMP_Text _botTMPText;
-    private TMP_Text _playerTMPText;
     private Vector2 _startSpeed;
     private Rigidbody2D _rbBall;
     private SpriteRenderer _ballSpriteRenderer;
-    private IEnumerator _coroutine;
-    
-    
-    private float[] _choiceX = new float[6] { -50, 50, -40, 40, -60, 60 };
-    private float[] _choiceY = new float[6] { -50, 50, -40, 40, -60, 60 };
     
     
     void Start()
     {
         _rbBall = GetComponent<Rigidbody2D>();
-        _botTMPText = _bot.GetComponent<TMP_Text>();
-        _playerTMPText = _player.GetComponent<TMP_Text>();
         _ballSpriteRenderer= GetComponent<SpriteRenderer>();
         
         CheckReferences();
@@ -71,32 +57,24 @@ public class BallController : MonoBehaviour
     }
     
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         
         if (collision.gameObject.CompareTag("botBorder"))
         {
-            // TODO: Добавить ScoreManager, передать управление очками ему
-            _botScore += 1;
-            _botTMPText.text = _botScore.ToString();
-            
+            ScoreManager.GetInstance().IncBotScore();
             StartCoroutine(RespawnRoutine());
         }
         if (collision.gameObject.CompareTag("playerBorder"))
         {
-            _playerScore += 1;
-            _playerTMPText.text = _playerScore.ToString();
-            
+            ScoreManager.GetInstance().IncPlayerScore();
             StartCoroutine(RespawnRoutine());
         }
     }
     private IEnumerator RespawnRoutine()
     {
-        
-        // TODO: Переделать рандом
         // TODO: Убрать хардкод
-        
-        _ballSpriteRenderer.color = Color.red;
+        _ballSpriteRenderer.color = _colorBallLocked;
         
         _rbBall.velocity = Vector2.zero;
         _rbBall.position = Vector2.zero;
@@ -107,8 +85,11 @@ public class BallController : MonoBehaviour
         _ballSpriteRenderer.color = _colorBallStandart;
         
         Random rnd = new Random();
-        _startSpeed = new Vector2(_choiceX[rnd.Next(0,6)], _choiceY[rnd.Next(0,6)]).normalized * _speed;
-        _rbBall.AddForce(_startSpeed);
+        // TODO: Переделать рандом
+        _startSpeed = new Vector2((float)rnd.NextDouble()/2, (float)rnd.NextDouble()/2).normalized;
+        Debug.Log(_startSpeed);
+        Debug.Log(_startSpeed*2);
+        _rbBall.AddRelativeForce(_startSpeed * _speed, ForceMode2D.Force);
 
     }
     

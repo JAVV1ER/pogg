@@ -13,7 +13,9 @@ public class GameCoordinator : MonoBehaviour
     private GameObject _btnRetry;
     [SerializeField]
     private GameObject _btnExit;
-    
+
+    [SerializeField] 
+    private int _scoreToWin = 3;
 
     
     [Space(10)]
@@ -53,10 +55,10 @@ public class GameCoordinator : MonoBehaviour
 
     void Update()
     {
-        if((_ballController._botScore == 7) || (_ballController._playerScore == 7))
+        if((ScoreManager.GetInstance()._scoreBot == _scoreToWin) || (ScoreManager.GetInstance()._scorePlayer == _scoreToWin))
         {
+            ScoreManager.GetInstance().ClearAllScore();
             Time.timeScale = 0;
-            
             _btnExit.SetActive(true);
             _btnRetry.SetActive(true);
         }

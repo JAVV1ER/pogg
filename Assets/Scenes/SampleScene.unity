@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 140384544}
   m_Layer: 5
   m_Name: BotScore
-  m_TagString: Untagged
+  m_TagString: botScore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 507543819}
   m_Layer: 0
   m_Name: BotBlock
-  m_TagString: Untagged
+  m_TagString: bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 737095301}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1152,15 +1152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c408604903745448ba85e69f70473f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerScore: 0
-  _botScore: 0
-  _speed: 50
+  _speed: 40
   _bot: {fileID: 1471611293}
   _player: {fileID: 140384542}
-  _colorBallLocked: {r: 1, g: 0.4481132, b: 0.4481132, a: 0}
-  _colorBallStandart: {r: 1, g: 1, b: 1, a: 0}
-  _colorBallReadyToGo: {r: 0.5518868, g: 1, b: 0.62396455, a: 0}
-  _waitBallReady: 2
+  _colorBallLocked: {r: 1, g: 0.4481132, b: 0.4481132, a: 1}
+  _colorBallStandart: {r: 1, g: 1, b: 1, a: 1}
+  _colorBallReadyToGo: {r: 0.5518868, g: 1, b: 0.62396455, a: 1}
+  _waitBallReady: 1
   _waitBallStandart: 1
 --- !u!212 &737095304
 SpriteRenderer:
@@ -1743,7 +1741,7 @@ GameObject:
   - component: {fileID: 1471611295}
   m_Layer: 5
   m_Name: PlayerScore
-  m_TagString: Untagged
+  m_TagString: playerScore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1897,6 +1895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _btnRetry: {fileID: 617871798}
   _btnExit: {fileID: 114366503}
+  _scoreToWin: 3
   _ballGameObject: {fileID: 737095300}
 --- !u!4 &1507159544
 Transform:

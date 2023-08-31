@@ -1,40 +1,74 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
 public class ScoreManager
 {
-    public static ScoreManager Instance
+    
+    private static ScoreManager instance;
+
+    public int _scoreBot;
+    public int _scorePlayer;
+
+    private TMP_Text _botTMP;
+    private TMP_Text _playerTMP;
+
+    public static ScoreManager GetInstance()
     {
-        get
+        if (instance == null)
         {
-            return _instance;
-            
-            
+            lock (typeof(ScoreManager))
+            {
+                if (instance == null)
+                    instance = new ScoreManager();
+            }
         }
-        set
-        {
-            if (_instance == null) _instance = value;
-            else throw new ArgumentException();
-        }
+
+        return instance;
     }
 
-    private static ScoreManager _instance;
+    public ScoreManager GetBotScore()
+    {
+        return this;
+    }
+    public void IncBotScore()
+    {
+        _scoreBot++;
+        BotSetScoreToText();
+        Debug.Log("INC bot: " + _scoreBot);
+    }
+    public void IncPlayerScore()
+    {
+        _scorePlayer++;
+        PlayerSetScoreToText();
+        Debug.Log("INC player: " + _scorePlayer);
+    }
 
-    public int scoreBot;
-    public int scorePlayer;
+    public void ClearAllScore()
+    {
+        _scorePlayer = 0;
+        PlayerSetScoreToText();
+        
+        _scoreBot = 0;
+        BotSetScoreToText();
+    }
+
+    private void BotSetScoreToText()
+    {
+        var botGM = GameObject.FindWithTag("botScore");
+        var botTMP = botGM.GetComponent<TMP_Text>();
+        botTMP.text = _scoreBot.ToString();
+    }
+    private void PlayerSetScoreToText()
+    {
+        var playerGM = GameObject.FindWithTag("playerScore");
+        var playerTMP = playerGM.GetComponent<TMP_Text>();
+        playerTMP.text = _scorePlayer.ToString();
+    }
+    
 
     
-    public void IncBot()
-    {
-        scoreBot++;
-        Debug.Log(scoreBot);
-    }
-    public void IncPlayer()
-    {
-        scorePlayer++;
-        Debug.Log(scorePlayer);
-    }
 }
