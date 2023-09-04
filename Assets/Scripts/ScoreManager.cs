@@ -10,8 +10,20 @@ public class ScoreManager
     
     private static ScoreManager instance;
 
-    public int _scoreBot;
-    public int _scorePlayer;
+    private int _scoreBot;
+    private int _scorePlayer;
+    public int scoreBot
+    {
+        get => _scoreBot;
+        set { _scoreBot = value; }
+    }
+
+    public int scorePlayer
+    {
+        get { return _scorePlayer;}
+        set { _scorePlayer = value;}
+    }
+    
 
     private TMP_Text _botTMP;
     private TMP_Text _playerTMP;
@@ -36,23 +48,23 @@ public class ScoreManager
     }
     public void IncBotScore()
     {
-        _scoreBot++;
+        scoreBot++;
         BotSetScoreToText();
-        Debug.Log("INC bot: " + _scoreBot);
+        Debug.Log("INC bot: " + scoreBot);
     }
     public void IncPlayerScore()
     {
-        _scorePlayer++;
+        scorePlayer++;
         PlayerSetScoreToText();
-        Debug.Log("INC player: " + _scorePlayer);
+        Debug.Log("INC player: " + scorePlayer);
     }
 
     public void ClearAllScore()
     {
-        _scorePlayer = 0;
+        scorePlayer = 0;
         PlayerSetScoreToText();
         
-        _scoreBot = 0;
+        scoreBot = 0;
         BotSetScoreToText();
     }
 
@@ -60,13 +72,13 @@ public class ScoreManager
     {
         var botGM = GameObject.FindWithTag("botScore");
         var botTMP = botGM.GetComponent<TMP_Text>();
-        botTMP.text = _scoreBot.ToString();
+        botTMP.text = scoreBot.ToString();
     }
     private void PlayerSetScoreToText()
     {
         var playerGM = GameObject.FindWithTag("playerScore");
         var playerTMP = playerGM.GetComponent<TMP_Text>();
-        playerTMP.text = _scorePlayer.ToString();
+        playerTMP.text = scorePlayer.ToString();
     }
     
 

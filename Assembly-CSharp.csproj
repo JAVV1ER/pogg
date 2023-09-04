@@ -41,12 +41,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\GameCoordinator.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\BotController.cs" />
      <Compile Include="Assets\Scripts\RacketCustomize.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\BallController.cs" />
+     <Compile Include="Assets\Scripts\Initializer.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IRacketCustomize.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm-help.en.txt" />
@@ -133,6 +135,7 @@
      <None Include="Library\PackageCache\com.unity.ide.rider@3.0.24\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\mergetool.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\semantic.ja.txt" />
+     <Folder Include="Assets\Scripts\Interfaces" />
      <None Include="Library\PackageCache\com.unity.test-framework@1.1.33\package.json" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts" />
      <Folder Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime" />

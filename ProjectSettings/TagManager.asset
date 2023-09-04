@@ -6,6 +6,11 @@ TagManager:
   tags:
   - botBorder
   - playerBorder
+  - botScore
+  - bot
+  - ball
+  - playerScore
+  - player
   layers:
   - Default
   - TransparentFX

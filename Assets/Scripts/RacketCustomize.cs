@@ -1,20 +1,23 @@
 using System;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
-public class RacketCustomize: MonoBehaviour
+public class RacketCustomize : IRacketCustomize//: MonoBehaviour
 {
-   public Skins currentSkin;
+   
 
    
    [SerializeField]
-   private GameObject _playerControllerPrefab;
-   [SerializeField]
-   private Transform _playerPlaceholderTransform;
+   //private GameObject _playerControllerPrefab;
+   
+   //private Transform _playerPlaceholderTransform;
+
+   //public Transform PlayerPlaceholderTransform { set => _playerPlaceholderTransform = value; }
    
    
-   void Start()
+   public void StartBuild(Skins currentSkin,GameObject _playerPrefab,Transform _playerPlaceholderTransform)
    {
       var racketBuilder = new RacketBuilder();
       switch(currentSkin)
@@ -22,7 +25,7 @@ public class RacketCustomize: MonoBehaviour
             
          case Skins.Neon:
             var neonRacket = racketBuilder
-               .WithRootPrefab(_playerControllerPrefab)
+               .WithRootPrefab(_playerPrefab)
                .WithPlaceholder(_playerPlaceholderTransform)
                .WithColor(Color.magenta)
                .WithWidth(.1f)
@@ -31,7 +34,7 @@ public class RacketCustomize: MonoBehaviour
             break;
          case Skins.Classic:
             var classicRacket = racketBuilder
-               .WithRootPrefab(_playerControllerPrefab)
+               .WithRootPrefab(_playerPrefab)
                .WithPlaceholder(_playerPlaceholderTransform)
                .WithColor(Color.white)
                .WithWidth(.2f)
@@ -40,6 +43,7 @@ public class RacketCustomize: MonoBehaviour
             break;
       }
    }
+   
 }
 public class RacketBuilder
 {
@@ -81,12 +85,6 @@ public class RacketBuilder
       return createdRacket;
    }
 }
-
-
-
-
-
-
 
 public enum Skins
 {

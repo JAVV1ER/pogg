@@ -1,11 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
 using Random = System.Random;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class BallController : MonoBehaviour
 {
@@ -34,7 +29,6 @@ public class BallController : MonoBehaviour
     private Vector2 _startSpeed;
     private Rigidbody2D _rbBall;
     private SpriteRenderer _ballSpriteRenderer;
-    
     
     void Start()
     {
@@ -86,7 +80,15 @@ public class BallController : MonoBehaviour
         
         Random rnd = new Random();
         // TODO: Переделать рандом
-        _startSpeed = new Vector2((float)rnd.NextDouble()/2, (float)rnd.NextDouble()/2).normalized;
+        // _startSpeed = new Vector2(
+        //         (float)rnd.NextDouble()/2,
+        //         (float)rnd.NextDouble()/2)
+        //     .normalized;
+        _startSpeed = new Vector2()
+        {
+            x = (float)rnd.NextDouble()/2,
+            y = (float)rnd.NextDouble()/2
+        }.normalized;
         Debug.Log(_startSpeed);
         Debug.Log(_startSpeed*2);
         _rbBall.AddRelativeForce(_startSpeed * _speed, ForceMode2D.Force);

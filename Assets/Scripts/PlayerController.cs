@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 _moveAxis;
     private Rigidbody2D _rigidbody2D;
+    private GameManager _gameManager;
     private SpriteRenderer _spriteRenderer;
     void Start()
     {
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
         _moveAxis = new Vector2(0, Input.GetAxis("Vertical"));
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         _rigidbody2D.MovePosition(_rigidbody2D.position + (_moveAxis * (_speed * Time.fixedDeltaTime)));
         

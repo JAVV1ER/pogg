@@ -1,51 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
-public class GameCoordinator : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private UIElements _uiElements;
     
-    [SerializeField]
-    private GameObject _btnRetry;
-    [SerializeField]
-    private GameObject _btnExit;
-
+    [Space(10)]
     [SerializeField] 
     private int _scoreToWin = 3;
-
     
     [Space(10)]
     [SerializeField]
     private GameObject _ballGameObject;
     
     private BallController _ballController;
+    private BotController _botController;
     
     private TMP_Text _botScore;
     private TMP_Text _playerScore;
+    
+    
     
     void Start()
     {
         
         Time.timeScale = 1;
         
-        _btnExit.SetActive(false);
-        _btnRetry.SetActive(false);
+        _uiElements.ButtonExit.SetActive(false);
+        _uiElements.ButtonRetry.SetActive(false);
         
         _ballController = _ballGameObject.GetComponent<BallController>();
 
         CheckReferences();
     }
+    
 
     void CheckReferences()
     {
+        _botController.FixedUpdate();
         
-        if (_btnRetry == null)
+        if (_uiElements.ButtonRetry == null)
             Debug.LogError("ButtonRetry не найден");
-        if (_btnExit == null)
+        if (_uiElements.ButtonExit == null)
             Debug.LogError("ButtonExit не найден");
         if (_ballGameObject == null)
             Debug.LogError("Ball не найден");
@@ -55,12 +54,13 @@ public class GameCoordinator : MonoBehaviour
 
     void Update()
     {
-        if((ScoreManager.GetInstance()._scoreBot == _scoreToWin) || (ScoreManager.GetInstance()._scorePlayer == _scoreToWin))
+        
+        if((ScoreManager.GetInstance().scoreBot == _scoreToWin) || (ScoreManager.GetInstance().scorePlayer == _scoreToWin))
         {
             ScoreManager.GetInstance().ClearAllScore();
             Time.timeScale = 0;
-            _btnExit.SetActive(true);
-            _btnRetry.SetActive(true);
+            _uiElements.ButtonExit.SetActive(true);
+            _uiElements.ButtonExit.SetActive(true);
         }
     }
 
@@ -71,5 +71,17 @@ public class GameCoordinator : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+    
+    [Serializable]
+    private class UIElements
+    {
+        [SerializeField]
+        private GameObject _buttonRetry;
+        [SerializeField]
+        private GameObject _buttonExit;
+
+        public GameObject ButtonRetry => _buttonRetry;
+        public GameObject ButtonExit => _buttonExit;
     }
 }

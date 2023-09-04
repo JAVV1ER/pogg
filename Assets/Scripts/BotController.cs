@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BotController : MonoBehaviour
+public class BotController //: MonoBehaviour
 {
-    [SerializeField]
-    private GameObject ball;
 
-    private GameObject _bot;
-    [SerializeField]
-    private float speed = 10f;
-    
+    private GameObject _botGameObjectGameObject;
     private Rigidbody2D _rbBall;
+    private float _speed = 10f;
     
-    void Start()
+    
+    public GameObject BotGameObject {set => _botGameObjectGameObject = value;}
+
+    public Rigidbody2D RbBall {set => _rbBall = value;}
+    
+    
+    public void FixedUpdate()
     {
-        ball = GameObject.FindWithTag("ball");
-        _bot = GameObject.FindWithTag("bot");
-        _rbBall = ball.GetComponent<Rigidbody2D>();   
-    }
-    void FixedUpdate()
-    {
-        // Бот ворует координату Y у мяча
-        _bot.transform.position = _bot.transform.position + Vector3.ClampMagnitude(new Vector3(0,_rbBall.velocity.y),speed) * Time.fixedDeltaTime;
+        // Бот ворует скорость Y у мяча
+        _botGameObjectGameObject.transform.position += Vector3.ClampMagnitude(new Vector3(0,_rbBall.velocity.y),_speed)
+                                  * Time.fixedDeltaTime;
     }
 
     

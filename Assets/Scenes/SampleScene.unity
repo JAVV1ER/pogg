@@ -691,7 +691,6 @@ GameObject:
   - component: {fileID: 507543822}
   - component: {fileID: 507543821}
   - component: {fileID: 507543820}
-  - component: {fileID: 507543819}
   m_Layer: 0
   m_Name: BotBlock
   m_TagString: bot
@@ -699,20 +698,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &507543819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507543818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc95683d281db24c9c7ca7077864b66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 737095300}
-  speed: 9
 --- !u!50 &507543820
 Rigidbody2D:
   serializedVersion: 4
@@ -1873,7 +1858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507159544}
   - component: {fileID: 1507159543}
-  - component: {fileID: 1507159545}
+  - component: {fileID: 1507159546}
   m_Layer: 0
   m_Name: GameCoordinator
   m_TagString: Untagged
@@ -1893,8 +1878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a6f40c67973644b89fa5806a913e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btnRetry: {fileID: 617871798}
-  _btnExit: {fileID: 114366503}
+  _uiElements:
+    _buttonRetry: {fileID: 617871798}
+    _buttonExit: {fileID: 114366503}
   _scoreToWin: 3
   _ballGameObject: {fileID: 737095300}
 --- !u!4 &1507159544
@@ -1912,7 +1898,7 @@ Transform:
   m_Father: {fileID: 1605135690}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1507159545
+--- !u!114 &1507159546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1921,12 +1907,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1507159542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a20bd9357b20c44799c974a5403511e, type: 3}
+  m_Script: {fileID: 11500000, guid: baef5ce2fc0a10447a7ed362be79da49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentSkin: 1
-  _playerControllerPrefab: {fileID: 45618250867756655, guid: 4a2de711b9128ab429ae421a3c8983fb, type: 3}
   _playerPlaceholderTransform: {fileID: 198163795}
+  _playerPrefab: {fileID: 45618250867756655, guid: 4a2de711b9128ab429ae421a3c8983fb, type: 3}
 --- !u!1 &1605135689
 GameObject:
   m_ObjectHideFlags: 0
