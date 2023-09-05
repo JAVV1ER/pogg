@@ -1,6 +1,7 @@
+using Interfaces;
 using UnityEngine;
 
-public class BotController //: MonoBehaviour
+public class BotController : IBotController//: MonoBehaviour
 {
 
     private GameObject _botGameObjectGameObject;
@@ -11,8 +12,8 @@ public class BotController //: MonoBehaviour
     public GameObject BotGameObject {set => _botGameObjectGameObject = value;}
 
     public Rigidbody2D RbBall {set => _rbBall = value;}
-    
-    
+
+
     public void FixedUpdate()
     {
         // Бот ворует скорость Y у мяча

@@ -8,17 +8,17 @@ using UnityEngine;
 public class ScoreManager
 {
     
-    private static ScoreManager instance;
+    private static ScoreManager _instance;
 
     private int _scoreBot;
     private int _scorePlayer;
-    public int scoreBot
+    public int ScoreBot
     {
         get => _scoreBot;
         set { _scoreBot = value; }
     }
 
-    public int scorePlayer
+    public int ScorePlayer
     {
         get { return _scorePlayer;}
         set { _scorePlayer = value;}
@@ -30,16 +30,16 @@ public class ScoreManager
 
     public static ScoreManager GetInstance()
     {
-        if (instance == null)
+        if (_instance == null)
         {
             lock (typeof(ScoreManager))
             {
-                if (instance == null)
-                    instance = new ScoreManager();
+                if (_instance == null)
+                    _instance = new ScoreManager();
             }
         }
 
-        return instance;
+        return _instance;
     }
 
     public ScoreManager GetBotScore()
@@ -48,23 +48,23 @@ public class ScoreManager
     }
     public void IncBotScore()
     {
-        scoreBot++;
+        ScoreBot++;
         BotSetScoreToText();
-        Debug.Log("INC bot: " + scoreBot);
+        Debug.Log("INC bot: " + ScoreBot);
     }
     public void IncPlayerScore()
     {
-        scorePlayer++;
+        ScorePlayer++;
         PlayerSetScoreToText();
-        Debug.Log("INC player: " + scorePlayer);
+        Debug.Log("INC player: " + ScorePlayer);
     }
 
     public void ClearAllScore()
     {
-        scorePlayer = 0;
+        ScorePlayer = 0;
         PlayerSetScoreToText();
         
-        scoreBot = 0;
+        ScoreBot = 0;
         BotSetScoreToText();
     }
 
@@ -72,13 +72,13 @@ public class ScoreManager
     {
         var botGM = GameObject.FindWithTag("botScore");
         var botTMP = botGM.GetComponent<TMP_Text>();
-        botTMP.text = scoreBot.ToString();
+        botTMP.text = ScoreBot.ToString();
     }
     private void PlayerSetScoreToText()
     {
         var playerGM = GameObject.FindWithTag("playerScore");
         var playerTMP = playerGM.GetComponent<TMP_Text>();
-        playerTMP.text = scorePlayer.ToString();
+        playerTMP.text = ScorePlayer.ToString();
     }
     
 

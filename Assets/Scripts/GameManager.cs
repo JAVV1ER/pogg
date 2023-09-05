@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using Interfaces;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -17,12 +18,13 @@ public class GameManager : MonoBehaviour
     private GameObject _ballGameObject;
     
     private BallController _ballController;
-    private BotController _botController;
+   // private BotController _botController;
     
     private TMP_Text _botScore;
     private TMP_Text _playerScore;
     
-    
+    public BotController _BotController {set => _ibotcontroller = value;}
+    private IBotController _ibotcontroller;
     
     void Start()
     {
@@ -33,14 +35,20 @@ public class GameManager : MonoBehaviour
         _uiElements.ButtonRetry.SetActive(false);
         
         _ballController = _ballGameObject.GetComponent<BallController>();
-
+        
+        
         CheckReferences();
+    }
+
+    public void SetActiveManager(bool isActive)
+    {
+        this.enabled = isActive;
     }
     
 
     void CheckReferences()
     {
-        _botController.FixedUpdate();
+        
         
         if (_uiElements.ButtonRetry == null)
             Debug.LogError("ButtonRetry не найден");
@@ -52,10 +60,16 @@ public class GameManager : MonoBehaviour
             Debug.LogError("BallController был null");
     }
 
+    private void FixedUpdate()
+    {
+        //_botController.FixedUpdate();
+        _ibotcontroller.FixedUpdate();
+    }
+
     void Update()
     {
         
-        if((ScoreManager.GetInstance().scoreBot == _scoreToWin) || (ScoreManager.GetInstance().scorePlayer == _scoreToWin))
+        if((ScoreManager.GetInstance().ScoreBot == _scoreToWin) || (ScoreManager.GetInstance().ScorePlayer == _scoreToWin))
         {
             ScoreManager.GetInstance().ClearAllScore();
             Time.timeScale = 0;

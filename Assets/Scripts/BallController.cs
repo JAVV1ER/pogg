@@ -7,10 +7,6 @@ public class BallController : MonoBehaviour
     
     [SerializeField]
     private float _speed = 10f;
-    [SerializeField]
-    private GameObject _bot;
-    [SerializeField]
-    private GameObject _player;
     
     [Space(20)]
     [SerializeField]
@@ -27,28 +23,19 @@ public class BallController : MonoBehaviour
     private float _waitBallStandart = 1f;
     
     private Vector2 _startSpeed;
+    
     private Rigidbody2D _rbBall;
     private SpriteRenderer _ballSpriteRenderer;
     
-    void Start()
+    public Rigidbody2D RbBall {set => _rbBall = value;}
+    public SpriteRenderer BallSpriteRenderer {set => _ballSpriteRenderer = value;}
+    
+    public void Initialize()
     {
-        _rbBall = GetComponent<Rigidbody2D>();
-        _ballSpriteRenderer= GetComponent<SpriteRenderer>();
-        
-        CheckReferences();
-        
         StartCoroutine(RespawnRoutine());
     }
 
-    void CheckReferences()
-    {
-        if (_bot == null)
-            Debug.LogError("Bot не найден");
-        if (_player == null)
-            Debug.LogError("Player не найден");
-        
-        // TODO: Добавить проверку компонентов
-    }
+    
     
 
     public void OnCollisionEnter2D(Collision2D collision)
