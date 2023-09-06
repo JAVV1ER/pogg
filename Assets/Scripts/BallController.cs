@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
+using Interfaces;
 using UnityEngine;
 using Random = System.Random;
 
-public class BallController : MonoBehaviour
+public class BallController : MonoBehaviour, ITarget
 {
-    
     [SerializeField]
     private float _speed = 10f;
     
@@ -21,49 +22,62 @@ public class BallController : MonoBehaviour
     private float _waitBallReady = 2f;
     [SerializeField]
     private float _waitBallStandart = 1f;
+
+    public Vector2 Position
+    {
+        get
+        {
+            if (_rb.velocity.x < 0) return Vector2.zero;
+            
+            return this.transform.position;
+        }
+    }
+    public event Action OnBotBoundsEnter;
+    public event Action OnPlayerBoundsEnter;
     
     private Vector2 _startSpeed;
     
-    private Rigidbody2D _rbBall;
-    private SpriteRenderer _ballSpriteRenderer;
-    
-    public Rigidbody2D RbBall {set => _rbBall = value;}
-    public SpriteRenderer BallSpriteRenderer {set => _ballSpriteRenderer = value;}
+    private Rigidbody2D _rb;
+    private SpriteRenderer _spriteRenderer;
     
     public void Initialize()
     {
+        _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        if (_rb == null || _spriteRenderer == null)
+            throw new NullReferenceException("Компоненты Ball были null");
+        
         StartCoroutine(RespawnRoutine());
     }
 
-    
-    
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        
         if (collision.gameObject.CompareTag("botBorder"))
         {
-            ScoreManager.GetInstance().IncBotScore();
+            OnBotBoundsEnter?.Invoke();
             StartCoroutine(RespawnRoutine());
         }
-        if (collision.gameObject.CompareTag("playerBorder"))
+        else if (collision.gameObject.CompareTag("playerBorder"))
         {
-            ScoreManager.GetInstance().IncPlayerScore();
+            OnPlayerBoundsEnter?.Invoke();
             StartCoroutine(RespawnRoutine());
         }
+            
     }
+    
     private IEnumerator RespawnRoutine()
     {
         // TODO: Убрать хардкод
-        _ballSpriteRenderer.color = _colorBallLocked;
+        _spriteRenderer.color = _colorBallLocked;
         
-        _rbBall.velocity = Vector2.zero;
-        _rbBall.position = Vector2.zero;
+        _rb.velocity = Vector2.zero;
+        _rb.position = Vector2.zero;
         
         yield return new WaitForSeconds(_waitBallReady);
-        _ballSpriteRenderer.color = _colorBallReadyToGo;
+        _spriteRenderer.color = _colorBallReadyToGo;
         yield return new WaitForSeconds(_waitBallStandart);
-        _ballSpriteRenderer.color = _colorBallStandart;
+        _spriteRenderer.color = _colorBallStandart;
         
         Random rnd = new Random();
         // TODO: Переделать рандом
@@ -78,8 +92,6 @@ public class BallController : MonoBehaviour
         }.normalized;
         Debug.Log(_startSpeed);
         Debug.Log(_startSpeed*2);
-        _rbBall.AddRelativeForce(_startSpeed * _speed, ForceMode2D.Force);
-
+        _rb.AddRelativeForce(_startSpeed * _speed, ForceMode2D.Force);
     }
-    
 }

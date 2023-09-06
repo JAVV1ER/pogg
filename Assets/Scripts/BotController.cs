@@ -1,24 +1,26 @@
 using Interfaces;
 using UnityEngine;
 
-public class BotController : IBotController//: MonoBehaviour
+public class BotController : IClockable//: MonoBehaviour
 {
 
-    private GameObject _botGameObjectGameObject;
-    private Rigidbody2D _rbBall;
+    private GameObject _botObject;
     private float _speed = 10f;
     
+    public ITarget Target { private get; set; }
     
-    public GameObject BotGameObject {set => _botGameObjectGameObject = value;}
-
-    public Rigidbody2D RbBall {set => _rbBall = value;}
+    public GameObject BotGameObject {set => _botObject = value;}
 
 
-    public void FixedUpdate()
+    public void UpdateTick()
     {
         // Бот ворует скорость Y у мяча
-        _botGameObjectGameObject.transform.position += Vector3.ClampMagnitude(new Vector3(0,_rbBall.velocity.y),_speed)
-                                  * Time.fixedDeltaTime;
+        var racketPos = _botObject.transform.position;
+        
+        racketPos = Vector2.Lerp(
+            racketPos, new Vector2(racketPos.x, Target.Position.y), _speed * Time.deltaTime);
+        
+        _botObject.transform.position = racketPos;
     }
 
     

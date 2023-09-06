@@ -42,14 +42,17 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Interfaces\IRacketCustomize.cs" />
-     <Compile Include="Assets\Scripts\ScoreManager.cs" />
+     <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\BotController.cs" />
-     <Compile Include="Assets\Scripts\RacketCustomize.cs" />
+     <Compile Include="Assets\Scripts\RacketVariants.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\BallController.cs" />
      <Compile Include="Assets\Scripts\Initializer.cs" />
-     <Compile Include="Assets\Scripts\Interfaces\IBotController.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\ITarget.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IClockable.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IBuildable.cs" />
+     <Compile Include="Assets\Scripts\Defaults.cs" />
+     <Compile Include="Assets\Scripts\RacketBuilder.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\workspaceserver.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\localization\cm-help.en.txt" />

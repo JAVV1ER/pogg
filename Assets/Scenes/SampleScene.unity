@@ -981,8 +981,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1507159543}
-        m_TargetAssemblyTypeName: gameCoordinator, Assembly-CSharp
-        m_MethodName: RestartLevel
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnRestartLevelButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1138,8 +1138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 40
-  _bot: {fileID: 1471611293}
-  _player: {fileID: 140384542}
   _colorBallLocked: {r: 1, g: 0.4481132, b: 0.4481132, a: 1}
   _colorBallStandart: {r: 1, g: 1, b: 1, a: 1}
   _colorBallReadyToGo: {r: 0.5518868, g: 1, b: 0.62396455, a: 1}
@@ -1873,7 +1871,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507159542}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42a6f40c67973644b89fa5806a913e72, type: 3}
   m_Name: 
@@ -1881,8 +1879,6 @@ MonoBehaviour:
   _uiElements:
     _buttonRetry: {fileID: 617871798}
     _buttonExit: {fileID: 114366503}
-  _scoreToWin: 3
-  _ballGameObject: {fileID: 737095300}
 --- !u!4 &1507159544
 Transform:
   m_ObjectHideFlags: 0
@@ -1910,7 +1906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baef5ce2fc0a10447a7ed362be79da49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSkin: 1
+  _playerCurrentSkin: 0
+  _scoreToWin: 3
   _playerPlaceholderTransform: {fileID: 198163795}
   _playerPrefab: {fileID: 45618250867756655, guid: 4a2de711b9128ab429ae421a3c8983fb, type: 3}
 --- !u!1 &1605135689

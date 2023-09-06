@@ -1,44 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : IClockable//: MonoBehaviour
 {
     [SerializeField]
     private float _speed = 10f;
     
-    private Vector2 _moveAxis;
-    private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
-    private SpriteRenderer _spriteRenderer;
-    void Start()
-    {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        
-    }
+    private Vector2 _moveAxis;
+    public Rigidbody2D Rigidbody2D {set => _rigidbody2D = value;}
+    private Rigidbody2D _rigidbody2D;
     
-    void Update()
+    public SpriteRenderer SpriteRenderer {set => _spriteRenderer = value;}
+    private SpriteRenderer _spriteRenderer;
+
+    public Transform transform {set => _transform = value;}
+    private Transform _transform;
+    
+    public void UpdateTick()
     {
         _moveAxis = new Vector2(0, Input.GetAxis("Vertical"));
-    }
-
-    public void FixedUpdate()
-    {
         _rigidbody2D.MovePosition(_rigidbody2D.position + (_moveAxis * (_speed * Time.fixedDeltaTime)));
-        
     }
 
-    public void SetColor(Color color)
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.color = color;
-    }
+    public void SetColor(Color color) { _spriteRenderer.color = color; }
 
     public void SetWidth(float width)
     {
-        var tmp = gameObject.transform.localScale;
+        var tmp = _transform.localScale;
         tmp.x = width;
-        gameObject.transform.localScale = tmp;
+        _transform.localScale = tmp;
     }
 }

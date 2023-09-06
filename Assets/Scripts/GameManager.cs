@@ -9,22 +9,30 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIElements _uiElements;
     
-    [Space(10)]
-    [SerializeField] 
-    private int _scoreToWin = 3;
-    
-    [Space(10)]
-    [SerializeField]
-    private GameObject _ballGameObject;
-    
-    private BallController _ballController;
-   // private BotController _botController;
-    
     private TMP_Text _botScore;
     private TMP_Text _playerScore;
+
+    public IBotController BotController
+    {
+        get => _botСontroller ?? throw new ArgumentNullException("botController был null");
+        set
+        {
+            if (_botСontroller != null) Debug.LogWarning("Попытка перезаписи botController`а");
+            _botСontroller ??= value;
+        }
+    }
+    private IBotController _botСontroller;
     
-    public BotController _BotController {set => _ibotcontroller = value;}
-    private IBotController _ibotcontroller;
+    public IClockable PlayerController
+    {
+        get => _playerController ?? throw new ArgumentNullException("playerController был null");
+        set
+        {
+            if (_playerController != null) Debug.LogWarning("Попытка перезаписи botController`а");
+            _playerController ??= value;
+        }
+    }
+    private IClockable _playerController;
     
     void Start()
     {
@@ -33,9 +41,6 @@ public class GameManager : MonoBehaviour
         
         _uiElements.ButtonExit.SetActive(false);
         _uiElements.ButtonRetry.SetActive(false);
-        
-        _ballController = _ballGameObject.GetComponent<BallController>();
-        
         
         CheckReferences();
     }
@@ -48,37 +53,46 @@ public class GameManager : MonoBehaviour
 
     void CheckReferences()
     {
-        
-        
         if (_uiElements.ButtonRetry == null)
             Debug.LogError("ButtonRetry не найден");
         if (_uiElements.ButtonExit == null)
             Debug.LogError("ButtonExit не найден");
-        if (_ballGameObject == null)
-            Debug.LogError("Ball не найден");
-        if (_ballController == null)
+        if (_botСontroller == null)
             Debug.LogError("BallController был null");
     }
-
-    private void FixedUpdate()
+    
+    private void Update()
     {
-        //_botController.FixedUpdate();
-        _ibotcontroller.FixedUpdate();
-    }
-
-    void Update()
-    {
+        _botСontroller.UpdateTick();
         
-        if((ScoreManager.GetInstance().ScoreBot == _scoreToWin) || (ScoreManager.GetInstance().ScorePlayer == _scoreToWin))
-        {
-            ScoreManager.GetInstance().ClearAllScore();
-            Time.timeScale = 0;
-            _uiElements.ButtonExit.SetActive(true);
-            _uiElements.ButtonExit.SetActive(true);
-        }
+    }
+    
+    public void OnPlayerWon()
+    {
+        Debug.Log("Победа игрока");
+        OnGameEnd();
     }
 
-    public void RestartLevel()
+    public void OnBotWon()
+    {
+        Debug.Log("Победа бота");
+        OnGameEnd();
+    }
+
+    private void OnGameEnd()
+    {
+        Score.Instance.ClearAllScore();
+        Time.timeScale = 0;
+        _uiElements.ButtonExit.SetActive(true);
+        _uiElements.ButtonExit.SetActive(true);
+    }
+    
+    public void OnRestartLevelButtonPressed()
+    {
+        RestartLevel();
+    }
+    
+    private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

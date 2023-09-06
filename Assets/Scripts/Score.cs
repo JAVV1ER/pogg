@@ -5,11 +5,17 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-public class ScoreManager
+public class Score
 {
+    public event Action OnPlayerWon;
+    public event Action OnBotWon;
     
-    private static ScoreManager _instance;
+    private static Score _instance;
 
+    public int scoreToWin {set => _scoreToWin = value;}
+    private int _scoreToWin;
+    public static Score Instance => _instance ??= new Score();
+    
     private int _scoreBot;
     private int _scorePlayer;
     public int ScoreBot
@@ -28,21 +34,7 @@ public class ScoreManager
     private TMP_Text _botTMP;
     private TMP_Text _playerTMP;
 
-    public static ScoreManager GetInstance()
-    {
-        if (_instance == null)
-        {
-            lock (typeof(ScoreManager))
-            {
-                if (_instance == null)
-                    _instance = new ScoreManager();
-            }
-        }
-
-        return _instance;
-    }
-
-    public ScoreManager GetBotScore()
+    public Score GetBotScore()
     {
         return this;
     }
@@ -51,12 +43,15 @@ public class ScoreManager
         ScoreBot++;
         BotSetScoreToText();
         Debug.Log("INC bot: " + ScoreBot);
+        if(_scoreToWin == ScoreBot) OnBotWon?.Invoke();
+        
     }
     public void IncPlayerScore()
     {
         ScorePlayer++;
         PlayerSetScoreToText();
         Debug.Log("INC player: " + ScorePlayer);
+        if(_scoreToWin == ScorePlayer) OnPlayerWon?.Invoke();
     }
 
     public void ClearAllScore()
@@ -70,17 +65,15 @@ public class ScoreManager
 
     private void BotSetScoreToText()
     {
-        var botGM = GameObject.FindWithTag("botScore");
-        var botTMP = botGM.GetComponent<TMP_Text>();
+        var gameObject = GameObject.FindWithTag("botScore");
+        var botTMP = gameObject.GetComponent<TMP_Text>();
         botTMP.text = ScoreBot.ToString();
     }
     private void PlayerSetScoreToText()
     {
-        var playerGM = GameObject.FindWithTag("playerScore");
-        var playerTMP = playerGM.GetComponent<TMP_Text>();
+        var gameObject = GameObject.FindWithTag("playerScore");
+        var playerTMP = gameObject.GetComponent<TMP_Text>();
         playerTMP.text = ScorePlayer.ToString();
     }
-    
-
     
 }
